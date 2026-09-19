@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekawati — Photographer & Videographer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pastel-bg': '#FDFBF7',
+                        'pastel-card': '#FFFFFF',
+                        'pastel-dark': '#2D3142',
+                        'pastel-muted': '#9095A1',
+                        'pastel-peach': '#FFD1B3',
+                        'pastel-mint': '#B9FBC0',
+                        'pastel-lavender': '#E2D9F3'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-pastel-bg text-pastel-dark font-sans antialiased">
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-pastel-bg/80 backdrop-blur-md border-b border-pastel-lavender/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="#home" class="text-xl font-bold tracking-tight">EKAWATI <span class="text-xs uppercase tracking-widest px-2 py-0.5 rounded-full bg-pastel-mint text-pastel-dark ml-1 font-semibold">Visuals</span></a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-medium">Beranda</a>
+                    <a href="#photography" class="text-sm font-medium">Fotografi</a>
+                    <a href="#videography" class="text-sm font-medium">Videografi</a>
+                    <button onclick="toggleAdminModal()" class="text-xs px-3 py-1.5 rounded-lg bg-pastel-lavender/50 hover:bg-pastel-lavender font-semibold">
+                        <i class="fa-solid fa-lock mr-1"></i> Admin Panel
+                    </button>
+                    <a href="#contact" class="px-5 py-2.5 rounded-full bg-pastel-dark text-pastel-bg text-sm font-medium">Hubungi Saya</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-24 pb-16 text-center px-4">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6">Mengabadikan Cerita Melalui <span class="text-orange-400">Lensa Estetik</span></h1>
+            <p class="text-pastel-muted text-lg mb-8">Portofolio Profesional Fotografi & Videografi oleh Ekawati.</p>
+            <a href="#photography" class="px-8 py-4 rounded-full bg-pastel-dark text-pastel-bg font-semibold shadow-lg">Lihat Katalog Portofolio</a>
+        </div>
+    </section>
+
+    <!-- FOTOGRAFI SECTION -->
+    <section id="photography" class="py-24 bg-pastel-card/50 border-t border-pastel-lavender/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold tracking-widest text-pastel-muted uppercase px-3 py-1 rounded-full bg-pastel-peach/30">KATALOG FOTOGRAFI</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Koleksi Per Kategori</h2>
+                <p class="text-pastel-muted text-sm mt-2">Klik foto mana saja untuk memperbesar (Preview).</p>
+            </div>
+
+            <!-- Filter Kategori -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12" id="project-filters">
+                <button class="filter-btn active px-4 py-2 rounded-full text-sm font-semibold bg-pastel-dark text-pastel-bg" onclick="filterGallery('all', this)">Semua Katalog</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-pastel-card border border-pastel-lavender" onclick="filterGallery('fashion', this)">Muslimah Wear</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-pastel-card border border-pastel-lavender" onclick="filterGallery('apparel', this)">Product / Apparel</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-pastel-card border border-pastel-lavender" onclick="filterGallery('food', this)">Home Cooked</button>
+                <button class="filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-pastel-card border border-pastel-lavender" onclick="filterGallery('portrait', this)">Portrait</button>
+            </div>
+
+            <!-- Grid Foto -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid"></div>
+        </div>
+    </section>
+
+    <!-- VIDEOGRAFI SECTION -->
+    <section id="videography" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold tracking-widest text-pastel-muted uppercase px-3 py-1 rounded-full bg-pastel-mint/40">VIDEOGRAFI</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mt-3">Karya Video</h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10" id="video-grid"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="py-12 bg-pastel-dark text-pastel-bg text-center">
+        <p class="mb-4 font-semibold">Tertarik bekerja sama?</p>
+        <p class="text-xs text-pastel-muted">&copy; 2026 Ekawati Visuals.</p>
+    </footer>
+
+    <!-- MODAL PREVIEW / LIGHTBOX FOTO -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+        <div class="relative max-w-4xl max-h-[90vh]" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-10 right-0 text-white text-3xl hover:text-pastel-peach"><i class="fa-solid fa-xmark"></i></button>
+            <img id="lightbox-img" src="" class="max-w-full max-h-[80vh] rounded-2xl shadow-2xl object-contain mx-auto">
+            <div class="text-center mt-4 text-white">
+                <h3 id="lightbox-title" class="text-xl font-bold"></h3>
+                <p id="lightbox-desc" class="text-sm text-gray-300 mt-1"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADMIN PANEL MODAL -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-pastel-bg w-full max-w-4xl rounded-3xl p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center pb-4 border-b border-pastel-lavender">
+                <h3 class="text-2xl font-bold">Panel Admin & Sinkronisasi</h3>
+                <button onclick="toggleAdminModal()" class="text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Bagian Sinkronisasi Data Manual (Backup / Restore) -->
+            <div class="my-6 p-4 bg-pastel-mint/20 rounded-2xl border border-pastel-mint flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div>
+                    <h4 class="font-bold text-sm">Sinkronisasi Antar Perangkat</h4>
+                    <p class="text-xs text-pastel-muted">Download data backup dari HP/Laptop ini, lalu upload ke perangkat lain agar data sama.</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="exportData()" class="px-4 py-2 bg-pastel-dark text-pastel-bg text-xs font-bold rounded-xl">Export Data</button>
+                    <label class="px-4 py-2 bg-white border border-pastel-lavender text-xs font-bold rounded-xl cursor-pointer">
+                        Import Data <input type="file" id="import-file" onchange="importData(event)" class="hidden">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Form Tambah Foto -->
+            <div class="space-y-4 bg-pastel-card p-6 rounded-2xl border border-pastel-lavender/40 mb-6">
+                <h4 class="font-bold text-lg">Tambah Foto ke Katalog</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="text" id="p-title" placeholder="Judul Proyek / Foto" class="px-4 py-2 rounded-xl border border-pastel-lavender text-sm">
+                    <select id="p-category" class="px-4 py-2 rounded-xl border border-pastel-lavender text-sm">
+                        <option value="fashion">Muslimah Wear</option>
+                        <option value="apparel">Product / Apparel</option>
+                        <option value="food">Home Cooked</option>
+                        <option value="portrait">Portrait</option>
+                    </select>
+                    <input type="text" id="p-image" placeholder="URL Gambar (Direct link)" class="px-4 py-2 rounded-xl border border-pastel-lavender text-sm sm:col-span-2">
+                    <input type="text" id="p-desc" placeholder="Deskripsi Foto" class="px-4 py-2 rounded-xl border border-pastel-lavender text-sm sm:col-span-2">
+                </div>
+                <button onclick="addPhoto()" class="px-6 py-2.5 bg-pastel-dark text-pastel-bg rounded-xl font-semibold text-sm">Simpan Foto</button>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="font-bold text-md">Daftar Foto Saat Ini</h4>
+                <div id="admin-photo-list" class="space-y-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const defaultPhotos = [
+            { id: 1, title: "Muslimah Wear Lookbook 1", category: "fashion", image: "https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?auto=format&fit=crop&w=800&q=80", desc: "Sesi pemotretan busana muslim." },
+            { id: 2, title: "Muslimah Wear Lookbook 2", category: "fashion", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=80", desc: "Gaya kasual elegan." },
+            { id: 3, title: "Minimalist Apparel", category: "apparel", image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=800&q=80", desc: "Detail tekstur pakaian." },
+            { id: 4, title: "Home Cooked Dish", category: "food", image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80", desc: "Kuliner rumahan." }
+        ];
+
+        const defaultVideos = [
+            { id: 1, title: "Muslimah Wear Cinematic", tag: "Muslimah Wear", url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", poster: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80", desc: "Video ulasan produk." }
+        ];
+
+        if (!localStorage.getItem('ekawati_photos')) localStorage.setItem('ekawati_photos', JSON.stringify(defaultPhotos));
+        if (!localStorage.getItem('ekawati_videos')) localStorage.setItem('ekawati_videos', JSON.stringify(defaultVideos));
+
+        function renderGallery(filter = 'all') {
+            const photos = JSON.parse(localStorage.getItem('ekawati_photos'));
+            const grid = document.getElementById('gallery-grid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' ? photos : photos.filter(p => p.category === filter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center text-pastel-muted py-10">Belum ada foto dalam kategori ini.</p>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                grid.innerHTML += `
+                    <div class="bg-pastel-card rounded-3xl overflow-hidden border border-pastel-lavender/40 shadow-sm cursor-pointer group" onclick="openLightbox('${p.image}', '${p.title}', '${p.desc}')">
+                        <div class="aspect-[4/3] overflow-hidden bg-pastel-lavender/20 relative">
+                            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm">
+                                <i class="fa-solid fa-magnifying-glass-plus mr-2"></i> Perbesar Foto
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-pastel-peach/40 text-pastel-dark mb-2 uppercase">${p.category}</span>
+                            <h3 class="text-lg font-bold text-pastel-dark">${p.title}</h3>
+                            <p class="text-xs text-pastel-muted mt-1">${p.desc}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function renderVideos() {
+            const videos = JSON.parse(localStorage.getItem('ekawati_videos'));
+            const grid = document.getElementById('video-grid');
+            grid.innerHTML = '';
+            videos.forEach(v => {
+                grid.innerHTML += `
+                    <div class="bg-pastel-card rounded-3xl overflow-hidden border border-pastel-lavender/40 shadow-sm p-6 space-y-4">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-pastel-mint/60">${v.tag}</span>
+                        <div class="aspect-video rounded-2xl overflow-hidden bg-slate-900">
+                            <video class="w-full h-full object-cover" controls poster="${v.poster}"><source src="${v.url}" type="video/mp4"></video>
+                        </div>
+                        <h3 class="text-xl font-bold">${v.title}</h3>
+                    </div>
+                `;
+            });
+        }
+
+        function openLightbox(img, title, desc) {
+            document.getElementById('lightbox-img').src = img;
+            document.getElementById('lightbox-title').innerText = title;
+            document.getElementById('lightbox-desc').innerText = desc;
+            document.getElementById('lightbox-modal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+        }
+
+        function renderAdminLists() {
+            const photos = JSON.parse(localStorage.getItem('ekawati_photos'));
+            document.getElementById('admin-photo-list').innerHTML = photos.map(p => `
+                <div class="flex items-center justify-between bg-pastel-bg p-3 rounded-xl border text-sm">
+                    <div class="flex items-center space-x-3">
+                        <img src="${p.image}" class="w-10 h-10 object-cover rounded-lg">
+                        <span><b>${p.title}</b> (${p.category})</span>
+                    </div>
+                    <button onclick="deletePhoto(${p.id})" class="text-red-500"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `).join('');
+        }
+
+        function addPhoto() {
+            const title = document.getElementById('p-title').value;
+            const category = document.getElementById('p-category').value;
+            const image = document.getElementById('p-image').value;
+            const desc = document.getElementById('p-desc').value;
+            if (!title || !image) { alert('Judul dan URL wajib diisi!'); return; }
+            const photos = JSON.parse(localStorage.getItem('ekawati_photos'));
+            photos.push({ id: Date.now(), title, category, image, desc });
+            localStorage.setItem('ekawati_photos', JSON.stringify(photos));
+            document.getElementById('p-title').value = '';
+            document.getElementById('p-image').value = '';
+            document.getElementById('p-desc').value = '';
+            renderGallery();
+            renderAdminLists();
+            alert('Foto berhasil ditambahkan!');
+        }
+
+        function deletePhoto(id) {
+            let photos = JSON.parse(localStorage.getItem('ekawati_photos').toString());
+            photos = JSON.parse(localStorage.getItem('ekawati_photos')).filter(p => p.id !== id);
+            localStorage.setItem('ekawati_photos', JSON.stringify(photos));
+            renderGallery();
+            renderAdminLists();
+        }
+
+        // Fitur Sinkronisasi (Export / Import data JSON agar bisa dipindah antar perangkat)
+        function exportData() {
+            const data = {
+                photos: JSON.parse(localStorage.getItem('ekawati_photos')),
+                videos: JSON.parse(localStorage.getItem('ekawati_videos'))
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ekawati-portfolio-backup.json';
+            a.click();
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.photos) localStorage.setItem('ekawati_photos', JSON.stringify(data.photos));
+                    if (data.videos) localStorage.setItem('ekawati_videos', JSON.stringify(data.videos));
+                    renderGallery();
+                    renderVideos();
+                    renderAdminLists();
+                    alert('Data berhasil disinkronkan!');
+                } catch (err) {
+                    alert('File backup tidak valid!');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function toggleAdminModal() {
+            document.getElementById('admin-modal').classList.toggle('hidden');
+            renderAdminLists();
+        }
+
+        function filterGallery(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.className = "filter-btn px-4 py-2 rounded-full text-sm font-semibold bg-pastel-card border border-pastel-lavender");
+            btn.className = "filter-btn active px-4 py-2 rounded-full text-sm font-semibold bg-pastel-dark text-pastel-bg";
+            renderGallery(cat);
+        }
+
+        window.onload = () => { renderGallery(); renderVideos(); };
+    </script>
+</body>
+</html>
